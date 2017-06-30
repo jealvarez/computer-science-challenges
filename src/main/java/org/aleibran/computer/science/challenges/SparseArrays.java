@@ -11,16 +11,16 @@ import java.util.stream.Stream;
 public class SparseArrays {
 
     public static void main(final String... arguments) throws Exception {
-        final List<String> fileAsArray = readFromFile();
-        // final List<String> fileAsArray = readFromSystemIn();
+        final List<String> inputAsArray = readFromFile();
+        // final List<String> inputAsArray = readFromSystemIn();
 
-        final Supplier<Stream<String>> fileSupplier = () -> fileAsArray.stream();
+        final Supplier<Stream<String>> fileSupplier = () -> inputAsArray.stream();
 
-        final int noStrings = Integer.valueOf(fileAsArray.get(0));
+        final int noStrings = Integer.valueOf(inputAsArray.get(0));
         final Supplier<Stream<String>> stringsSupplier = () -> fileSupplier.get().skip(1).limit(noStrings);
 
-        final int noQueries = Integer.valueOf(fileAsArray.get(0)) + 2;
-        final Supplier<Stream<String>> queriesSupplier = () -> fileSupplier.get().skip(noQueries).limit(Integer.valueOf(fileAsArray.get(noQueries - 1)));
+        final int noQueries = Integer.valueOf(inputAsArray.get(0)) + 2;
+        final Supplier<Stream<String>> queriesSupplier = () -> fileSupplier.get().skip(noQueries).limit(Integer.valueOf(inputAsArray.get(noQueries - 1)));
 
         queriesSupplier.get().forEach((q) -> {
             System.out.println(stringsSupplier.get().filter((s) -> s.equals(q)).count());
@@ -40,8 +40,9 @@ public class SparseArrays {
         final Scanner scanner = new Scanner(System.in);
         final List<String> strings = new ArrayList<>();
 
-        while (scanner.hasNext())
+        while (scanner.hasNext()) {
             strings.add(scanner.nextLine());
+        }
 
         return strings;
     }

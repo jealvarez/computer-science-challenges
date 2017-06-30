@@ -15,12 +15,12 @@ public class MarsExploration {
         final String[] strings = line.split("(?<=\\G...)");
 
         System.out.println(Stream.of(strings).filter((s) -> !"SOS".equals(s))
-                                   .mapToInt((c) -> {
-                                       int count = (Character.compare('S', c.charAt(0)) != 0) ? 1 : 0;
-                                       count += (Character.compare('O', c.charAt(1)) != 0) ? 1 : 0;
-                                       count += (Character.compare('S', c.charAt(2)) != 0) ? 1 : 0;
-                                       return count;
-                                   }).asLongStream().sum());
+                                 .mapToInt((c) -> {
+                                     int count = (Character.compare('S', c.charAt(0)) != 0) ? 1 : 0;
+                                     count += (Character.compare('O', c.charAt(1)) != 0) ? 1 : 0;
+                                     count += (Character.compare('S', c.charAt(2)) != 0) ? 1 : 0;
+                                     return count;
+                                 }).asLongStream().sum());
     }
 
 }
